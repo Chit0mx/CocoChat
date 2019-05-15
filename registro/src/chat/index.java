@@ -10,7 +10,10 @@ public class index {
         login log=new login();
         log.setVisible(true);
         
-        Chats chats = new Chats();
-        chats.setVisible(false);
+        listas list = new listas();
+        list.setVisible(false);
+        
+        Ventana_Chat chat = new Ventana_Chat();
+        chat.setVisible(false);
     }
 }

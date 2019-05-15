@@ -22,17 +22,17 @@ public class Informacion extends JPanel {
         
         ip = new JLabel("IP");
         ip.setText("Tu IP:");
-        ip.setBounds(130, 50, 100, 20);
+        ip.setBounds(40, 50, 100, 20);
         this.add(ip);
         
         ip_usuario = new JTextField();
         ip_usuario.setText("x.x.x.x");
-        ip_usuario.setBounds(180, 50, 100, 20);
+        ip_usuario.setBounds(80, 50, 100, 20);
         this.add(ip_usuario);
         
         salir = new JButton();
         salir.setText("Cerrar sesion");
-        salir.setBounds(130, 80, 150, 40);
+        salir.setBounds(80, 80, 150, 40);
         this.add(salir);
         salir.addActionListener(new ActionListener() {
             @Override

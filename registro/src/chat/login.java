@@ -50,8 +50,10 @@ public class login extends JFrame{
             if(rs.next()){
                 resultado=1;
                 if(resultado==1){
-                    Chats ini=new Chats();
+                    listas ini=new listas();
+                    Ventana_Chat vChat = new Ventana_Chat();
                     ini.setVisible(true);
+                    vChat.setVisible(true);
                     JOptionPane.showMessageDialog(null,"Inicio de sesión exitoso");
                     this.dispose();
                 }
