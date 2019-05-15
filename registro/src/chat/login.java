@@ -30,6 +30,9 @@ public class login extends JFrame{
     
     public login() {
         inicio();
+        Username.setText("H3lltronik");
+        contra.setText("123");
+        acceder();
     }
     private JFrame getFrame(){
         return this;
@@ -54,7 +57,7 @@ public class login extends JFrame{
                     Ventana_Chat vChat = new Ventana_Chat();
                     ini.setVisible(true);
                     vChat.setVisible(true);
-                    JOptionPane.showMessageDialog(null,"Inicio de sesión exitoso");
+                    //JOptionPane.showMessageDialog(null,"Inicio de sesión exitoso");
                     this.dispose();
                 }
             }else{
