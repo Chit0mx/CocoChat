@@ -13,7 +13,6 @@ public class index {
         listas list = new listas();
         list.setVisible(false);
         
-        Ventana_Chat chat = new Ventana_Chat();
-        chat.setVisible(false);
+        
     }
 }

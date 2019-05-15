@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import usuario.Usuario;
 
 public class login extends JFrame{
     
@@ -53,9 +54,12 @@ public class login extends JFrame{
             if(rs.next()){
                 resultado=1;
                 if(resultado==1){
+                    // Crear la instancia de usuario con los datos del login
+                    int idUsuario = rs.getInt("idUsuario"); // Obtener la idUsuario desde el query de arriba
+                    Usuario usuarioClass = new Usuario(usuario, idUsuario);
                     listas ini=new listas();
-                    Ventana_Chat vChat = new Ventana_Chat();
                     ini.setVisible(true);
+                    Ventana_Chat vChat = new Ventana_Chat(usuarioClass);
                     vChat.setVisible(true);
                     //JOptionPane.showMessageDialog(null,"Inicio de sesión exitoso");
                     this.dispose();
