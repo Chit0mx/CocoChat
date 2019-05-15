@@ -15,5 +15,6 @@ public class index {
         
         Ventana_Chat chat = new Ventana_Chat();
         chat.setVisible(false);
+        
     }
 }
