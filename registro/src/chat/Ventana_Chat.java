@@ -9,6 +9,11 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -67,8 +72,17 @@ public class Ventana_Chat extends JFrame {
 
         //Set Frame Visible
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e){
+                try {
+                    client.logout();
+                } catch (IOException ex) {
+                    Logger.getLogger(Ventana_Chat.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.exit(0);
+            }
+        });
     }
     
     private JTextArea textArea(){

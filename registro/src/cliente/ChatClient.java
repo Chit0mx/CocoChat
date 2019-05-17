@@ -176,6 +176,7 @@ public class ChatClient {
             while( true ) {
                 // Leer lo que se escriba
                 linea = bufferedIn.readLine();
+                System.out.println("Entre xd " + linea);
                 // Cuando es null es que se cerro la conexion con el socket cliente
                 if (linea == null) {
                     break;
@@ -184,6 +185,7 @@ public class ChatClient {
                 if (tokens.length > 0 && tokens != null) {
                     // La primera palabra es el comando
                     String cmd = tokens[0];
+                    System.out.println("Comando recibido: " + cmd);
                     if ("online".equalsIgnoreCase(cmd)) {
                         handleOnline(tokens);
                     } else if ("offline".equalsIgnoreCase(cmd)) {
@@ -196,6 +198,13 @@ public class ChatClient {
                             body += tokens[i] + " ";
                         }
                         handleMessage(tokens[1], body);
+                    } else if ("conectados".equalsIgnoreCase(cmd)) {
+                        ArrayList<String> nombreConectados = new ArrayList();
+                        for(int i = 2; i < tokens.length; i++) {
+                            nombreConectados.add(tokens[i]);
+                        }
+                        
+                        System.out.println("Los conectados son: " + nombreConectados);
                     }
                 }
             }
@@ -207,6 +216,10 @@ public class ChatClient {
                 e.printStackTrace();
             }
         }
+    }
+    
+    public void logout () throws IOException {
+        logoff();
     }
 
     private void handleMessage(String login, String body) {
