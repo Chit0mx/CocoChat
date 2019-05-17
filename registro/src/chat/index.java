@@ -7,14 +7,10 @@ public class index {
         registro reg=new registro();
         reg.setVisible(false);
         
-        login log=new login();
+        login log = new login();
         log.setVisible(false);
         
-        listas list = new listas();
+        listas list = new listas(log.getUsuarioActual());
         list.setVisible(false);
-        
-        Ventana_Chat chat = new Ventana_Chat();
-        chat.setVisible(false);
-        
     }
 }

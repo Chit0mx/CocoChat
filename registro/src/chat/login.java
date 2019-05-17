@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import usuario.Usuario;
 
 public class login extends JFrame {
 
@@ -22,9 +23,10 @@ public class login extends JFrame {
     private JPasswordField contra;
     private JLabel Usr;
     private JLabel Cont;
-    int intentos = 0;
-
-    conectar cc = new conectar();
+    private Usuario usuarioActual;
+    int intentos=0;
+    
+    conectar cc=new conectar();
     Connection cn = cc.conexion();
     registro reg = new registro();
 
@@ -51,13 +53,16 @@ public class login extends JFrame {
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-
-            if (rs.next()) {
-                resultado = 1;
-                if (resultado == 1) {
-                    listas ini = new listas();
-                    Ventana_Chat vChat = new Ventana_Chat();
+            
+            if(rs.next()){
+                resultado=1;
+                if(resultado==1){
+                    // Crear la instancia de usuario con los datos del login
+                    int idUsuario = rs.getInt("idUsuario"); // Obtener la idUsuario desde el query de arriba
+                    this.usuarioActual = new Usuario(usuario, idUsuario);
+                    listas ini = new listas(this.usuarioActual);
                     ini.setVisible(true);
+                    Ventana_Chat vChat = new Ventana_Chat(this.usuarioActual);
                     vChat.setVisible(true);
                     //JOptionPane.showMessageDialog(null,"Inicio de sesión exitoso");
                     this.dispose();
@@ -161,5 +166,9 @@ public class login extends JFrame {
             }
         }
         );
+    }
+    
+    public Usuario getUsuarioActual(){
+        return this.usuarioActual;
     }
 }

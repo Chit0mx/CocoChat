@@ -3,19 +3,25 @@ package chat;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JTabbedPane;
+import usuario.Usuario;
 
 public class listas extends JFrame{
     
-    Lista_Conectados conectados = new Lista_Conectados();
+    private final Usuario usuarioActual;
     Lista_Desconectados desconectados = new Lista_Desconectados();
-    Lista_Amigos amigos = new Lista_Amigos();
+    Lista_Amigos amigos;
     Lista_Grupos grupos = new Lista_Grupos();
+    Lista_Conectados conectados;
     Informacion info = new Informacion();
     
     //Componente para poder crear las pestañas
     JTabbedPane tabbedPane = new JTabbedPane();
     
-    public listas(){
+    
+    public listas(Usuario usuario){
+        this.usuarioActual = usuario;
+        amigos = new Lista_Amigos(usuarioActual);
+        conectados = new Lista_Conectados(usuarioActual);
         inicio();
     };
     

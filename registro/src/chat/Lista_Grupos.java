@@ -4,13 +4,16 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Lista_Grupos extends JPanel {
     
-    JLabel prueba;
+
     JLabel grupo;
+    JButton boton;
+
     
     public Lista_Grupos(){
         inicio();   
@@ -20,7 +23,8 @@ public class Lista_Grupos extends JPanel {
         this.setLayout(null);
         
         //conexion
-        conectar cc=new conectar();
+
+        conectar cc = new conectar();
         Connection cn = cc.conexion();
         
         //SQLs
@@ -29,14 +33,18 @@ public class Lista_Grupos extends JPanel {
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(query);
-            int y = 50;
+            int y = 0;
             while (rs.next())
             {
                 String nombre = rs.getString("nombre");
                 grupo = new JLabel("Grupo");
                 grupo.setText(nombre);
-                grupo.setBounds(50, y += 10, 100, 100);
+                grupo.setBounds(10, y += 20, 50, 20);
+                boton = new JButton("Opciones");
+                boton.setBounds(60, y, 100, 20);
                 this.add(grupo);
+                this.add(boton);
+                
             }
             st.close();
         }
@@ -44,9 +52,5 @@ public class Lista_Grupos extends JPanel {
         {
             System.err.println(e.getMessage());
         }
-        prueba = new JLabel("Prueba");
-        prueba.setText("Si sirve 4 xd");
-        prueba.setBounds(50, 50, 100, 100);
-        this.add(prueba);
      }
 }

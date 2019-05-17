@@ -1,5 +1,8 @@
 package chat;
 
+import cliente.ChatClient;
+import cliente.MessageListener;
+import cliente.UserStatusListener;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -13,15 +16,18 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import usuario.Usuario;
 
 public class Ventana_Chat extends JFrame {
     
     private JTextField textInput;
     private JButton enviar;
     private JTextArea cajaMensajes;
+    private ChatClient client;
     
     // Instancia de la logica del chat
     chatLogic chat = new chatLogic();
+    private final Usuario usuario;
     
     void actuaizarChat(){
         String TodosMSG="";
@@ -30,8 +36,10 @@ public class Ventana_Chat extends JFrame {
         }
        cajaMensajes.setText(TodosMSG);
     }
-    public Ventana_Chat(){
-        inicio();   
+    public Ventana_Chat(Usuario usuario){
+        this.usuario = usuario;
+        inicio();
+        crearCliente();
     };
     
      private void inicio(){
@@ -39,6 +47,8 @@ public class Ventana_Chat extends JFrame {
      }
     
     private void createFrame() {
+        // Crear el cliente del server
+        
         //Build JFrame
         setLayout(null);
         setSize(750,750);
@@ -89,12 +99,49 @@ public class Ventana_Chat extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Guardar mensaje escrito en una variable
                    String mensaje = textInput.getText();
-                   chat.addMensaje(new mensaje(1,"Chit0mx", mensaje));
-                   textInput.setText("");
-                   actuaizarChat();
+                   mostrarMensaje(usuario.getIdUsuario(),usuario.getNombre(), mensaje);
             }
         });
 
         return testbutton;
+    }
+    
+    private void mostrarMensaje (int id, String nombre, String mensaje) {
+        chat.addMensaje(new mensaje(id, nombre, mensaje));
+        textInput.setText("");
+        actuaizarChat();
+    }
+
+    private void crearCliente() {
+        client = new ChatClient("localhost", 8818);
+        client.addOutput (chat); // Esto lo puse pero aun no se si se va a usar xd
+        // Esto es lo que se va a ejecutar cuando en el cliente socket le que se contecto o desconecto alguien
+        client.addUserStatusListener(new UserStatusListener() {
+            @Override
+            public void online(String login) {
+                mostrarMensaje(0, "System" , login + " is now online");
+                System.out.println("ONLINE: " + login);
+            }
+
+            @Override
+            public void offline(String login) {
+                System.out.println("OFFLINE: " + login);
+            }
+        });
+        // Esto es lo que se va a ejecutar cuando en el cliente socket le llegue un mensaje
+        client.addMessageListener(new MessageListener() {
+            @Override
+            public void onMessage(String fromLogin, String msgBody) {
+                mostrarMensaje(0, fromLogin, msgBody);
+                System.out.println("You got a message from " + fromLogin + " ====> " + msgBody);
+            }
+        });
+
+        if(!client.connect()) {
+            System.err.println("Connection failed!");
+        } else {
+            System.out.print("Connection OK!\n");
+            client.login(usuario.getNombre(), "sin_password");
+        }
     }
 }
