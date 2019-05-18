@@ -8,9 +8,7 @@ public class index {
         reg.setVisible(false);
         
         login log = new login();
-        log.setVisible(false);
+        log.setVisible(true);
         
-        listas list = new listas(log.getUsuarioActual());
-        list.setVisible(false);
     }
 }

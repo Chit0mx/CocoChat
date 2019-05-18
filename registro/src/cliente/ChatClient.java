@@ -72,7 +72,7 @@ public class ChatClient {
         }
     }
 
-    private void msg(String sendTo, String msgBody) {
+    public void msg(String sendTo, String msgBody) {
         String cmd = "msg " + sendTo + " " + msgBody + "\n";
         try {
             serverOut.write(cmd.getBytes());
@@ -103,7 +103,32 @@ public class ChatClient {
         }
         return false;
     }
-
+    
+    public boolean joinTopic (String topic) {
+        String cmd = "join #" + topic + "\n";
+        System.out.println("Ward 0");
+        try {
+            System.out.println("Ward 1");
+            //System.out.println("Command: " + cmd);
+            serverOut.write(cmd.getBytes());
+            System.out.println("Ward 2");
+            //BufferedReader reader = new BufferedReader(new InputStreamReader(serverIn));
+            System.out.println("Ward 3");
+            //String response = reader.readLine();
+            System.out.println("Ward 4");
+            //System.out.println("Response line: " + response);
+            return true;
+            /*if ( ("Te uniste al topico #" + topic).equalsIgnoreCase(response)) {
+                System.out.println("Te has unido correctamente al grupo: " + topic);
+                return true;
+            } else {
+                return false;
+            }*/
+        } catch (IOException ex) {
+            Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 
     public boolean login(String login, String password) {
         String cmd = "login " + login + " " + password + "\n";
