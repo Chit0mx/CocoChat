@@ -32,9 +32,9 @@ public class login extends JFrame {
 
     public login() {
         inicio();
-        Username.setText("H3lltronik");
-        contra.setText("123");
-        acceder();
+        //Username.setText("H3lltronik");
+        //contra.setText("123");
+        //acceder();
     }
 
     private JFrame getFrame() {
@@ -59,12 +59,18 @@ public class login extends JFrame {
                 if(resultado==1){
                     // Crear la instancia de usuario con los datos del login
                     int idUsuario = rs.getInt("idUsuario"); // Obtener la idUsuario desde el query de arriba
+                    historial hMsg = new historial(idUsuario);
+                    hMsg.loadHistorial();
+                    hMsg.loadHistorialG();
+                   
+                    
                     this.usuarioActual = new Usuario(usuario, idUsuario);
-                    listas ini = new listas(this.usuarioActual);
-                    ini.setVisible(true);
                     Ventana_Chat vChat = new Ventana_Chat(this.usuarioActual);
                     vChat.setVisible(true);
-                    //JOptionPane.showMessageDialog(null,"Inicio de sesión exitoso");
+                    
+                    listas ini = new listas(this.usuarioActual, vChat);
+                    ini.setVisible(true);
+                    JOptionPane.showMessageDialog(null,"Inicio de sesión exitoso");
                     this.dispose();
                 }
             } else {

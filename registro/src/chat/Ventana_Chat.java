@@ -30,6 +30,23 @@ public class Ventana_Chat extends JFrame {
     private JTextArea cajaMensajes;
     private ChatClient client;
     
+    public JTextField getTextInput() {
+        return textInput;
+    }
+
+    public ChatClient getClient() {
+        return client;
+    }
+    private String activeChat;
+
+    public String getActiveChat() {
+        return activeChat;
+    }
+
+    public void setActiveChat(String activeChat) {
+        this.activeChat = activeChat;
+    }
+    
     // Instancia de la logica del chat
     chatLogic chat = new chatLogic();
     private final Usuario usuario;
@@ -113,6 +130,7 @@ public class Ventana_Chat extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Guardar mensaje escrito en una variable
                    String mensaje = textInput.getText();
+                   client.msg(activeChat, mensaje);
                    mostrarMensaje(usuario.getIdUsuario(),usuario.getNombre(), mensaje);
             }
         });
