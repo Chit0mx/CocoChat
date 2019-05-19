@@ -32,7 +32,7 @@ public class listas extends JFrame{
         this.usuarioActual = usuarioActual;
         amigos = new Lista_Amigos(usuarioActual, vChat);
         desconectados = new Lista_Desconectados(usuarioActual, vChat);
-        conectados = new Lista_Conectados(usuarioActual);
+        conectados = new Lista_Conectados(usuarioActual, vChat);
         grupos = new Lista_Grupos(usuarioActual, vChat);
         inicio();
     }

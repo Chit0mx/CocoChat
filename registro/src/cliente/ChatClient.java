@@ -224,12 +224,7 @@ public class ChatClient {
                         }
                         handleMessage(tokens[1], body);
                     } else if ("conectados".equalsIgnoreCase(cmd)) {
-                        ArrayList<String> nombreConectados = new ArrayList();
-                        for(int i = 2; i < tokens.length; i++) {
-                            nombreConectados.add(tokens[i]);
-                        }
                         
-                        System.out.println("Los conectados son: " + nombreConectados);
                     }
                 }
             }
@@ -264,6 +259,29 @@ public class ChatClient {
         String login = tokens[1];
         for (UserStatusListener listener : userStatusListeners) {
             listener.online(login);
+        }
+    }
+    
+    public ArrayList<String> getConectados() {
+        String cmd = "conectados\n";
+        try {
+            serverOut.write(cmd.getBytes());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(serverIn));
+            String response = reader.readLine();
+            System.out.println("Los conectados: " + response);
+            
+            String[] tokens = response.split(" ");
+            ArrayList<String> nombreConectados = new ArrayList();
+            for(int i = 0; i < tokens.length; i++) {
+                nombreConectados.add(tokens[i]);
+            }
+
+            System.out.println("Los conectados son: " + nombreConectados);
+            return nombreConectados;
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

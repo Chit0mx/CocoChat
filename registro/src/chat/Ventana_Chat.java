@@ -129,6 +129,7 @@ public class Ventana_Chat extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Guardar mensaje escrito en una variable
+                System.out.println("El mensaje es para: " + activeChat);
                    String mensaje = textInput.getText();
                    client.msg(activeChat, mensaje);
                    mostrarMensaje(usuario.getIdUsuario(),usuario.getNombre(), mensaje);
@@ -174,6 +175,20 @@ public class Ventana_Chat extends JFrame {
         } else {
             System.out.print("Connection OK!\n");
             client.login(usuario.getNombre(), "sin_password");
+
+            //setTimeout(() -> client.getConectados(), 1000);
         }
+    }
+    
+    public static void setTimeout(Runnable runnable, int delay){
+        new Thread(() -> {
+            try {
+                Thread.sleep(delay);
+                runnable.run();
+            }
+            catch (Exception e){
+                System.err.println(e);
+            }
+        }).start();
     }
 }

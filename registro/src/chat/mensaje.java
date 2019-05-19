@@ -5,7 +5,6 @@ public class mensaje {
         String nombre;
         String mensaje;
         
-        
         public void setIdUsuario(int idUsuario) {
             this.idUsuario = idUsuario;
         }
