@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Efraín/Desktop/Cocochat/CocoChat/registro/src/chat/CrearHistorial.java</file>
             <file>file:/C:/Users/Efraín/Desktop/Cocochat/CocoChat/registro/src/chat/Lista_Grupos.java</file>
             <file>file:/C:/Users/Efraín/Desktop/Cocochat/CocoChat/registro/src/chat/Ventana_Chat.java</file>
             <file>file:/C:/Users/Efraín/Desktop/Cocochat/CocoChat/registro/src/chat/registro.java</file>
+=======
+            <file>file:/C:/Users/cappr/Desktop/chatVerFraSau/CocoChat/registro/src/chat/MenuDesplegable.java</file>
+            <file>file:/C:/Users/cappr/Desktop/chatVerFraSau/CocoChat/registro/src/chat/Lista_Grupos.java</file>
+>>>>>>> 238c7f5d2b60bc45eeb706dc82a912ea31ed050c
         </group>
     </open-files>
 </project-private>

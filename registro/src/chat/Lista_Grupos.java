@@ -86,7 +86,7 @@ public class Lista_Grupos extends JPanel {
                 
                 menu = new JPopupMenu();
                 menu.add(new MenuDesplegable("Enviar mensaje al grupo", (new Usuario(nombre, 0)), this.usuarioActual , vChat));
-                menu.add(new MenuDesplegable("Unirse al grupo", (new Usuario(nombre, 0)), this.usuarioActual , vChat));
+                menu.add(new MenuDesplegable("Eliminar Grupo", (new Usuario(nombre, 0)), this.usuarioActual , vChat));
                 
                 boton.addActionListener(new ActionListener() {
                     @Override
