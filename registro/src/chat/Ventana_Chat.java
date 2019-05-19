@@ -129,8 +129,11 @@ public class Ventana_Chat extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Guardar mensaje escrito en una variable
+                   System.out.println("El mensajes es para " + activeChat);
                    String mensaje = textInput.getText();
                    client.msg(activeChat, mensaje);
+                   CrearHistorial CH = new CrearHistorial(usuario, mensaje, activeChat);
+                   CH.subirMensaje();
                    mostrarMensaje(usuario.getIdUsuario(),usuario.getNombre(), mensaje);
             }
         });
