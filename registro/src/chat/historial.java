@@ -33,11 +33,11 @@ public class historial {
             int idAmistad = rs.getInt("idAmistad");
             
             String sql1 ="SELECT * FROM mensajesamigos WHERE idAmistad ='"+idAmistad+"'";
-            Statement st1 = cn.createStatement();
-            ResultSet rs1 = st.executeQuery(sql1);
-            while(rs1.next()){
+            st = cn.createStatement();
+            rs = st.executeQuery(sql1);
+            while(rs.next()){
                 
-                msgAmistad msgA =new msgAmistad(idAmistad,rs1.getString("mensaje"),rs1.getLong("timestamp") ,rs1.getInt("idMensaje"));
+                msgAmistad msgA =new msgAmistad(idAmistad,rs.getString("mensaje"),rs.getLong("timestamp") ,rs.getInt("idMensaje"));
                 listMsg.add(msgA);
                 }
             }  
@@ -62,11 +62,11 @@ public class historial {
             int idGrupo = rs.getInt("idGrupo");
             
             String sql1 ="SELECT * FROM mensajesgrupos WHERE idGrupo ='"+idGrupo+"'";
-            Statement st1 = cn.createStatement();
-            ResultSet rs1 = st.executeQuery(sql1);
-            while(rs1.next()){
+            st = cn.createStatement();
+            rs = st.executeQuery(sql1);
+            while(rs.next()){
                 
-                msgGrupo msgG =new msgGrupo(idGrupo,rs1.getString("mensaje"),rs1.getLong("timestamp") ,rs1.getInt("idMensaje"));
+                msgGrupo msgG =new msgGrupo(idGrupo,rs.getString("mensaje"),rs.getLong("timestamp") ,rs.getInt("idMensaje"));
                 listMsgG.add(msgG);
                 }
             }  
@@ -74,7 +74,7 @@ public class historial {
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Mensajes guardados" + listMsg);
+        System.out.println("Mensajes de grupo guardados" + listMsgG);
         return false;
     }
     
