@@ -5,6 +5,10 @@ import javax.swing.*;
 
 public class conectar {
     Connection conect = null;
+
+    public Connection getConect() {
+        return conect;
+    }
     public Connection conexion()
         {
             try {

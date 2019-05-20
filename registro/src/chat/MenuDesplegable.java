@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package chat;
 
 import java.awt.event.ActionEvent;
@@ -18,10 +13,6 @@ import javax.swing.Action;
 import javax.swing.JOptionPane;
 import usuario.Usuario;
 
-/**
- *
- * @author Alan Franco
- */
 public class MenuDesplegable extends AbstractAction{
     private String textoOpcion;
     Usuario destino;
@@ -51,6 +42,7 @@ public class MenuDesplegable extends AbstractAction{
                 //vChat.getClient().msg(destino, vChat.getTextInput().getText());
             } else if (textoOpcion.equalsIgnoreCase("Agregar amigo")) {
                 System.out.println("Agregar a " + destino.getIdUsuario() + " " + destino.getNombre());
+                // Agregar desde el primer usuario
                 try {
                     PreparedStatement pst = cn.prepareStatement("INSERT INTO amigos (idUsuario, idAmigo, apodo) VALUES (?,?,?);");
                     pst.setInt(1,usuarioActual.getIdUsuario());
@@ -63,12 +55,55 @@ public class MenuDesplegable extends AbstractAction{
                 } catch (SQLException ex) {
                     Logger.getLogger(registro.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                // Agregar desde el segundo usuario
+                try {
+                    PreparedStatement pst = cn.prepareStatement("INSERT INTO amigos (idUsuario, idAmigo, apodo) VALUES (?,?,?);");
+                    pst.setInt(1,destino.getIdUsuario());
+                    pst.setInt(2,usuarioActual.getIdUsuario());
+                    pst.setString(3,destino.getNombre());
+                    int n=pst.executeUpdate();
+                    if(n>0){
+                        JOptionPane.showMessageDialog(null, "Se ha registrado con exito");
+                    }   
+                } catch (SQLException ex) {
+                    Logger.getLogger(registro.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             } else if (textoOpcion.equalsIgnoreCase("Unirse al grupo")) {
-                //System.out.println("Unido al grupo: " + destino.getNombre());
                 boolean res = vChat.getClient().joinTopic(destino.getNombre());
+                try {
+                    PreparedStatement pst = cn.prepareStatement("INSERT INTO amigos (idUsuario, idAmigo, apodo) VALUES (?,?,?);");
+                    int n=pst.executeUpdate();
+                    
+                    PreparedStatement pst1 = cn.prepareStatement("INSERT INTO amigos (idUsuario, idAmigo, apodo) VALUES (?,?,?);");
+                    pst1.setInt(1,usuarioActual.getIdUsuario());
+                    pst1.setInt(2,destino.getIdUsuario());
+                    pst1.setString(3,destino.getNombre());
+                    int n1=pst1.executeUpdate();
+                    if(n>0){
+                        JOptionPane.showMessageDialog(null, "Se ha ingresado al grupo con exito");
+                    }   
+                } catch (SQLException ex) {
+                    Logger.getLogger(registro.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else if (textoOpcion.equalsIgnoreCase("Enviar mensaje al grupo")) {
                 System.out.println("Chat de grupo activo: #" + destino.getNombre());
                 vChat.setActiveChat("#" + destino.getNombre());
+            }
+            else if (textoOpcion.equalsIgnoreCase("Eliminar Grupo")) {
+                System.out.println("Grupo Eliminado: #" + destino.getNombre());
+                try {
+                    PreparedStatement pst = cn.prepareStatement("DELETE FROM grupos WHERE nombre = '"+ destino.getNombre()+"';");
+                   //pst.setInt(1,usuarioActual.getIdUsuario());
+                   //pst.setInt(2,destino.getIdUsuario());
+                   //pst.setString(3,destino.getNombre());
+                    int n=pst.executeUpdate();
+                    if(n>0){
+                        JOptionPane.showMessageDialog(null, "Se ha eliminado con exito");
+                    }   
+                } catch (SQLException ex) {
+                    Logger.getLogger(registro.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 		System.out.println("Pulsado " + textoOpcion);
 	}

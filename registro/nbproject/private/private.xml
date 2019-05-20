@@ -4,14 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/cliente/ChatClient.java</file>
-            <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/Lista_Amigos.java</file>
-            <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/MenuDesplegable.java</file>
+            <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/CrearHistorial.java</file>
             <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/Lista_Grupos.java</file>
-            <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/index.java</file>
+            <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/MenuDesplegable.java</file>
             <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/listas.java</file>
             <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/registro.java</file>
             <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/Lista_Desconectados.java</file>
-            <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/login.java</file>
+            <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/Lista_Conectados.java</file>
+            <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/chatLogic.java</file>
             <file>file:/C:/Users/esaue/Desktop/chat/chatVerFraSau/CocoChat/registro/src/chat/Ventana_Chat.java</file>
         </group>
     </open-files>

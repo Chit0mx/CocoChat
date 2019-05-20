@@ -16,8 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -132,6 +130,8 @@ public class Ventana_Chat extends JFrame {
                 System.out.println("El mensaje es para: " + activeChat);
                    String mensaje = textInput.getText();
                    client.msg(activeChat, mensaje);
+                   CrearHistorial CH = new CrearHistorial(usuario, mensaje, activeChat);
+                   CH.subirMensaje();
                    mostrarMensaje(usuario.getIdUsuario(),usuario.getNombre(), mensaje);
             }
         });

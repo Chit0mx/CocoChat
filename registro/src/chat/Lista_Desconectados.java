@@ -69,7 +69,6 @@ public class Lista_Desconectados extends JPanel {
                 });
                 this.add(boton);
             }
-            st.close();
         }
         catch (SQLException e)
         {
